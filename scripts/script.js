@@ -1,15 +1,15 @@
 class Creature{
     static number = 0;
-    #id;
+    #id =  0;
     constructor(name, healthPoints, damage, armor){
         this.name = name;
         this.healthPoints = healthPoints;
         this.damage = damage;
         this.armor = armor>70 ? 0.7 : armor/10;
-        this.#id = this.id;
+        this.#id = ++Creature.number;
     }
     get id(){
-        return ++Creature.number;
+        return this.#id;
     }
     defeat(){
         alert(`${this.name} уничтожен!`);
@@ -52,7 +52,9 @@ class Enemy extends Creature{
 }
 
 var player = new Player('Garen', '1600', '190','40');
+console.log(Creature.number);
 var enemy = new Enemy('Darius', '1500', '215', '30');
+console.log(Creature.number);
 player.info();
 enemy.info();
 var flag = false;
